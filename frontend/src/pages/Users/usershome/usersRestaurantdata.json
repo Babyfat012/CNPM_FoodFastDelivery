@@ -1,0 +1,177 @@
+{
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Pasta Paradise",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Italian",
+      "rating": 4.2,
+      "ratingCount": "500+",
+      "menu":[
+        {
+          "id": 1,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+          "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+          "available": true
+
+        }
+      ]
+
+    },
+    {
+      "id": 2,
+      "name": "Curry Castle",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Indian",
+      "rating": 4.5,
+      "ratingCount": "1000+",
+      "menu":[
+        {
+          "id": 2,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Burger Haven",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "American",
+      "rating": 4.0,
+      "ratingCount": "750+",
+      "menu":[
+        {
+          "id": 3,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Curry singh",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Japanese",
+      "rating": 4.7,
+      "ratingCount": "1200+",
+      "menu":[
+        {
+          "id": 4,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Noodle Nest",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Italian",
+      "rating": 4.2,
+      "ratingCount": "500+",
+      "menu":[
+        {
+          "id": 5,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Spice Symphony",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Indian",
+      "rating": 4.5,
+      "ratingCount": "1000+",
+      "menu":[
+        {
+          "id": 6,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Burger Bonanza",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "American",
+      "rating": 4.0,
+      "ratingCount": "750+",
+      "menu":[
+        {
+          "id": 7,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+
+    },
+    {
+      "id": 8,
+      "name": "Sushi Supreme",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Japanese",
+      "rating": 4.7,
+      "ratingCount": "1200+",
+      "menu":[
+        {
+          "id": 8,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "burger singh",
+      "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+      "cuisine": "Italian",
+      "rating": 2.2,
+      "ratingCount": "500+",
+      "menu":[
+        {
+          "id": 9,
+          "name": "Pasta",
+          "description": "Pasta with white sauce",
+          "price": 100,
+           "image": "https://res.cloudinary.com/ddyejtuqb/image/upload/v1719814366/resss_mqx2vx.jpg",
+           "available": true
+
+        }
+      ]
+    }
+  ]
+}
