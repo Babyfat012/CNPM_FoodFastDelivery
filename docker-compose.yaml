@@ -22,7 +22,14 @@ services:
     ports:
       - "3000:3000"
     environment:
-      
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/fooddelivery
+      - KEY=eee9bfece0d5ea2f2ca39ef406564c15
+      - CLOUDINARY_CLOUD_NAME=dc1vbmwvf
+      - CLOUDINARY_API_KEY=154889875917397
+      - CLOUDINARY_API_SECRET=2Hy_QeL-h-48cEQUSJhy7-3wM2k
+      - MAPQUEST_API_KEY=6n8mOkjIr008hDT2QOx9Vs9NNsAmCWEz
+      - STRIPE_SECRET_KEY=sk_test_26PHem9AhJZvU623DfE1x4sd
     depends_on:
       - mongodb
     volumes:
