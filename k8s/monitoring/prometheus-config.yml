@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'backend'
+        static_configs:
+          - targets: ['backend-service:3000']
+      - job_name: 'frontend'
+        static_configs:
+          - targets: ['frontend-service:5173']
