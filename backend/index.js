@@ -12,6 +12,7 @@ import paymentRouter from './routes/paymentRoutes.js';
 import addressRoutes from './routes/AddressRoutes.js';
 import orderRoutes from './routes/OrderRoutes.js';
 import MapAddressRoutes from './routes/MapAddressRoutes.js'
+import DroneRoutes from "./routes/DroneRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -49,6 +50,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/payment', paymentRouter);
 app.use('/api/addresses', addressRoutes);
 app.use('/api/order', orderRoutes);
+app.use("/api/drones", DroneRoutes);
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {

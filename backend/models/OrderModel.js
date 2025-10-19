@@ -17,6 +17,10 @@ const OrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Delivery",
     },
+    drone: {
+        type: Schema.Types.ObjectId,
+        ref: "Drone"
+    },
     paymentId: {
         type:Schema.Types.ObjectId,
         ref: "Payment",
@@ -54,7 +58,6 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     },
-    
 }, {
     timestamps: true,
 });

@@ -38,7 +38,7 @@ import DelNotifications from "./components/AfterLoginDeliveryPartnersCompo/DelNo
 import DelOrderManagement from "./components/AfterLoginDeliveryPartnersCompo/DelOrderManagement.jsx";
 import DelProfile from "./components/AfterLoginDeliveryPartnersCompo/DelProfile.jsx";
 import DelSupport from "./components/AfterLoginDeliveryPartnersCompo/DelSupport.jsx";
-
+import DelDroneManagement from './components/AfterLoginDeliveryPartnersCompo/DelDroneManagement';
 
 
 import UsersRestaurant from "./pages/Users/usershome/UsersRestaurant.jsx"
@@ -62,6 +62,7 @@ const router = createBrowserRouter(
       <Route path="/ResResetPassword/:token" element={<ResResetPassword />} />
 
 
+
       <Route path="UserLoginRegister" element={<UserLoginRegister />} />
       <Route path="UserForgotPasswordDialog" element={<UserForgotPasswordDialog />} />
       <Route path="UserLogin" element={<UserLogin />} />
@@ -81,6 +82,7 @@ const router = createBrowserRouter(
         <Route path="DelNotifications" element={<DelNotifications />} />
         <Route path="DelProfile" element={<DelProfile />} />
         <Route path="DelSupport" element={<DelSupport />} />
+          <Route path="DelDroneManagement" element={<DelDroneManagement />} />
       </Route>
 
       <Route path="/UsersRestaurant" element={<UsersRestaurant />} />
@@ -97,6 +99,8 @@ const router = createBrowserRouter(
         <Route path="ResMenu" element={< ResMenu />} />
       </Route>
       {/* <Route path="ResLogin" element */}
+
+
     </Route>
   )
 );

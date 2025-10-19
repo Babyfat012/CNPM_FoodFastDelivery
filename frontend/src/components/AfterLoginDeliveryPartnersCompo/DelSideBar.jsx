@@ -28,6 +28,8 @@ const DelSidebar = () => {
   const sideMenu = [
     { title: 'Dashboard', icon: <SpaceDashboardIcon sx={{ fontSize: 30 }} />, path: 'DelDashboard' },
     { title: 'Orders', icon: <ShoppingBagIcon sx={{ fontSize: 30 }} />, path: 'DelOrderManagement' },
+    { title: 'Drone', icon: <ShoppingBagIcon sx={{ fontSize: 30 }} />, path: 'DelDroneManagement' },
+
     { title: 'Notification', icon: <NotificationsIcon sx={{ fontSize: 30 }} />, path: 'DelNotifications' },
     { title: 'Profile', icon: <PersonIcon sx={{ fontSize: 30 }} />, path: 'DelProfile' },
     { title: 'Support', icon: <SupportIcon sx={{ fontSize: 30 }} />, path: 'DelSupport' },

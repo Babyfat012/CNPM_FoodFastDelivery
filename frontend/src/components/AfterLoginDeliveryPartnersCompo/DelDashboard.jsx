@@ -8,7 +8,8 @@ import axios from 'axios';
 import { RxCross2 } from "react-icons/rx";
 
 const CurrentOrder = ({ orders, getOrders }) => {
-  const currentOrders = orders.filter((order) => order.orderStatus !== 'Delivered');
+
+  const currentOrders = orders.filter((order) => order.orderStatus !== 'Delivered' && order.drone !== null);
 
   const [status, setStatus] = useState('');
   const delId = localStorage.getItem('delId');
@@ -117,7 +118,9 @@ const CurrentOrder = ({ orders, getOrders }) => {
 };
 
 const PastOrder = ({ orders }) => {
+
   const pastOrders = orders.filter((order) => order.orderStatus === 'Delivered');
+  console.log(pastOrders);
   return (
     <>
       {
@@ -212,7 +215,7 @@ const DelDashboard = () => {
 
   const getOrders = async (delId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/order/getOrdersByDelId/${delId}`, {
+      const response = await axios.get(`http://localhost:3000/api/order/getAllAcceptedOrders`, {
         withCredentials: true,
       });
       console.log(delId);
