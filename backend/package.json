@@ -35,5 +35,10 @@
     "react-leaflet": "^4.2.1",
     "socket.io": "^4.7.5",
     "stripe": "^16.2.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.2.3",
+    "supertest": "^7.1.4"
   }
 }
