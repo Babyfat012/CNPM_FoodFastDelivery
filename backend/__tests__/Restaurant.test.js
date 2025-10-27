@@ -207,8 +207,23 @@ describe('Restaurant Routes', () => {
         });
 
         it('should fail when restaurant not found', async () => {
+            // create an authenticated restaurant so auth middleware passes
+            const authRestaurant = await RestaurantModel.create({
+                ownerName: 'Auth Owner',
+                password: await bcrypt.hash('password123', 10),
+                restaurantName: 'Auth Restaurant',
+                phone: '0000000000',
+                email: 'auth@example.com',
+                city: 'Ho Chi Minh',
+                address: 'Auth Address',
+                countryName: 'Vietnam',
+                stateName: 'Ho Chi Minh'
+            });
+
+            const token = jwt.sign({ id: authRestaurant._id }, process.env.KEY);
+
+            // use a different (non-existent) restaurant id as param
             const fakeId = new mongoose.Types.ObjectId();
-            const token = jwt.sign({ id: fakeId }, process.env.KEY);
 
             const response = await request(app)
                 .patch(`/updateStatus/${fakeId}`)
