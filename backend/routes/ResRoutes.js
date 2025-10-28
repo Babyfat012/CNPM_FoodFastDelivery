@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 import nodemailer from 'nodemailer';
 import RestaurantModel from "../models/ResModel.js";
 import { AuthenticateUser } from "./UserRoutes.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const router = express.Router();
 
 // Register Route
@@ -55,7 +56,13 @@ router.post('/ResLogin', async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.KEY, { expiresIn: "1h" });
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); // 1 hour in milliseconds
+    res.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 3600000, // 1 hour
+      secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production', // true trên Railway
+      sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax', // 'none' cho cross-origin
+      domain: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? undefined : 'localhost'
+    }); // 1 hour in milliseconds
 
     return res.json({ status: true, message: "Login successful" });
   } catch (err) {
@@ -94,7 +101,7 @@ We received a request to reset your FoodieBuddy password. If you made this reque
 
 If you didn't request a password reset, please ignore this email or let us know.
 
-http://localhost:5173/ResResetPassword/${token}
+${process.env.FRONTEND_URL}/ResResetPassword/${token}
 
 Thank you for being a part of the FoodieBuddy community!
 
@@ -165,9 +172,13 @@ export const Authenticate = async (req, res, next) => {
 
 
 router.get('/logout',(req,res)=>{
-  res.clearCookie('token')
-  return res.json({status: true})
-})
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production',
+    sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax'
+  });
+  return res.json({ status: true });
+});
 
 //Dashboard
 router.get('/RestaurantLayout/ResDashBoard', Authenticate, (req, res) => {

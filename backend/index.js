@@ -23,7 +23,7 @@ app.use(express.json());
 
 // CORS configuration cho production
 const allowedOrigins = [
-    "https://cicd2-five.vercel.app",
+    "https://cnpm-food-fast-delivery.vercel.app",
     "http://localhost:5173", // cho local development
     "http://localhost:3000"
 ];
@@ -47,7 +47,7 @@ app.use(cors({
         // Kiểm tra origin
         const isVercelDomain = origin.includes('vercel.app');
         const isLocalhost = origin.includes('localhost');
-        const isAllowedDomain = origin === 'https://cicd2-five.vercel.app';
+        const isAllowedDomain = origin === 'https://cnpm-food-fast-delivery.vercel.app';
 
         if (isVercelDomain || isLocalhost || isAllowedDomain) {
             callback(null, true);

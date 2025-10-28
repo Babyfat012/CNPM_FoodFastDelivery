@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import nodemailer from 'nodemailer';
 import UserModel from "../models/UserModel.js";
 import RestaurantModel from "../models/ResModel.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const router = express.Router();
 
@@ -39,6 +41,7 @@ router.post('/user/register', async (req, res) => {
 router.post('/UserLogin', async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
+  console.log('NODE_ENV:', process.env.RAILWAY_ENVIRONMENT_NAME);
   try {
     const user = await UserModel.findOne({ email });
     if (!user) {
@@ -51,7 +54,13 @@ router.post('/UserLogin', async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.KEY, { expiresIn: "1h" });
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); // 1 hour in milliseconds
+    res.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 3600000, // 1 hour
+      secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production', // true trên Railway
+      sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax', // 'none' cho cross-origin
+      domain: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? undefined : 'localhost'
+    }); // 1 hour in milliseconds
 
     return res.json({ status: true, message: "Login successful" });
   } catch (err) {
@@ -90,7 +99,7 @@ We received a request to reset your FoodieBuddy password. If you made this reque
 
 If you didn't request a password reset, please ignore this email or let us know.
 
-http://localhost:5173/UserResetPassword/${token}
+${process.env.FRONTEND_URL}/UserResetPassword/${token}
 
 Thank you for being a part of the FoodieBuddy community!
 
@@ -157,11 +166,14 @@ export const AuthenticateUser = async (req, res, next) => {
   }
 }
 //Logout
-router.get('/UserLogout',(req,res)=>{
-  res.clearCookie('token')
-  return res.json({status: true})
-})
-
+router.get('/UserLogout', (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production',
+    sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax'
+  });
+  return res.json({ status: true });
+});
 //Dashboard
 router.get('/UsersRestaurant', AuthenticateUser, async (req, res) => {
   try {

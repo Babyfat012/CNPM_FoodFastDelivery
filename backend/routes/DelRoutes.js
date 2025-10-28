@@ -5,6 +5,8 @@ import nodemailer from 'nodemailer';
 import DeliveryModel from "../models/DelModel.js";
 
 const router = express.Router();
+import dotenv from "dotenv";
+dotenv.config();
 
 // Register Route
 router.post('/delivery/register', async (req, res) => {
@@ -55,7 +57,13 @@ router.post('/DelLogin', async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.KEY, { expiresIn: "1h" });
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); // 1 hour in milliseconds
+    res.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 3600000, // 1 hour
+      secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production', // true trên Railway
+      sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax', // 'none' cho cross-origin
+      domain: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? undefined : 'localhost'
+    }); // 1 hour in milliseconds
 
     return res.json({ status: true, message: "Login successful" });
   } catch (err) {
@@ -63,6 +71,7 @@ router.post('/DelLogin', async (req, res) => {
     return res.status(500).send("Server error");
   }
 });
+
 
 // Forgot Password Route
 router.post('/DelForgotPasswordDialog', async (req, res) => {
@@ -94,7 +103,7 @@ We received a request to reset your FoodieBuddy password. If you made this reque
 
 If you didn't request a password reset, please ignore this email or let us know.
 
-http://localhost:5173/DelResetPassword/${token}
+${process.env.FRONTEND_URL}/DelResetPassword/${token}
 
 Thank you for being a part of the FoodieBuddy community!
 
@@ -164,9 +173,13 @@ export const AuthenticateDel = async (req, res, next) => {
 
 //Logout
 router.get('/DelLogout',(req,res)=>{
-  res.clearCookie('token')
-  return res.json({status: true})
-})
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.RAILWAY_ENVIRONMENT_NAME === 'production',
+    sameSite: process.env.RAILWAY_ENVIRONMENT_NAME === 'production' ? 'none' : 'lax'
+  });
+  return res.json({ status: true });
+});
 
 //Dashboard
 router.get('/DelLayout/DelDashboard', AuthenticateDel, async (req, res) => {
