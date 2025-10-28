@@ -36,7 +36,7 @@ const DeliverypartnerLoginRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3000/auth/delivery/register", {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/auth/delivery/register`, {
         drivingLicenceNo,
         ownerName,
         password,

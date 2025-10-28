@@ -31,7 +31,7 @@ const UserLoginRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3000/auth/user/register", {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/auth/user/register`, {
         ownerName,
         password,
         phone,
