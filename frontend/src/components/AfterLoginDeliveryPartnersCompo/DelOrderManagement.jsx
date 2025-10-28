@@ -10,7 +10,7 @@ const DelOrderManagement = () => {
 //
 //   const getOrders = async () => {
 //     try {
-//       const response = await axios.get(`http://localhost:3000/api/order/getAllOrders`,
+//       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/order/getAllOrders`,
 //         {
 //           withCredentials: true,
 //         }
@@ -31,7 +31,7 @@ const DelOrderManagement = () => {
 //   const handleAccept = async (orderId) => {
 //     try {
 //
-//       const response = await axios.put(`http://localhost:3000/api/order/assignDeliveryMan/${orderId}`, {
+//       const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/order/assignDeliveryMan/${orderId}`, {
 //         withCredentials: true,
 //       });
 //       if (response.status !== 200) {
@@ -142,7 +142,7 @@ const DelOrderManagement = () => {
 
   const getOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/order/getAllOrders`, { withCredentials: true } );
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/order/getAllOrders`, { withCredentials: true } );
       setOrders(response.data);
     } catch (error) {
       console.error(error);
@@ -151,7 +151,7 @@ const DelOrderManagement = () => {
 
   const getDrones = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/drones');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/drones`);
       setDrones(response.data.filter(drone => drone.status === 'AVAILABLE'));
     } catch (error) {
       console.error(error);
@@ -171,7 +171,7 @@ const DelOrderManagement = () => {
     }
     try {
       const response = await axios.put(
-          `http://localhost:3000/api/order/assignDrone/${orderId}`,
+          `${import.meta.env.VITE_API_URL}/api/order/assignDrone/${orderId}`,
           { droneId },
           { withCredentials: true }
       );

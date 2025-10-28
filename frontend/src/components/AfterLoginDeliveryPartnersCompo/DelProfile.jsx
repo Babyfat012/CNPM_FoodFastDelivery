@@ -9,7 +9,7 @@ const DelProfile = () => {
 
   const callDelProfile = async () => {
     try {
-      const res = await fetch('http://localhost:3000/auth/DelLayout/DelProfile', { // Update with the correct backend URL and port
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/DelLayout/DelProfile`, { // Update with the correct backend URL and port
         method: "GET",
         headers: {
           Accept: "application/json",

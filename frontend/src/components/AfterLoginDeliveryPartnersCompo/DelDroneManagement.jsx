@@ -14,7 +14,7 @@ const DelDroneManagement = () => {
 
     const fetchDrones = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/api/drones');
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/drones`);
             setDrones(res.data);
         } catch (err) {
             console.error(err);
@@ -28,7 +28,7 @@ const DelDroneManagement = () => {
     const handleAddDrone = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/api/drones', {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/drones`, {
                 droneId: form.droneId,
                 batteryLevel: form.batteryLevel,
                 maxPayload: form.maxPayload,
@@ -54,7 +54,7 @@ const DelDroneManagement = () => {
 
     const handleDeleteDrone = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/drones/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/drones/${id}`);
             fetchDrones();
         } catch (err) {
             alert('Error deleting drone');
