@@ -5,8 +5,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
-import ResRoutes from '../routes/ResRoutes.js';
-import RestaurantModel from '../models/ResModel.js';
+import ResRoutes from '../../routes/ResRoutes.js';
+import RestaurantModel from '../../models/ResModel.js';
 
 const app = express();
 app.use(express.json());

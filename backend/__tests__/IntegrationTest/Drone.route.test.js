@@ -2,8 +2,8 @@ import request from 'supertest';
 import express from 'express';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import DroneRoutes from '../routes/DroneRoutes.js';
-import DroneModel from '../models/DroneModel.js';
+import DroneRoutes from '../../routes/DroneRoutes.js';
+import DroneModel from '../../models/DroneModel.js';
 
 const app = express();
 app.use(express.json());

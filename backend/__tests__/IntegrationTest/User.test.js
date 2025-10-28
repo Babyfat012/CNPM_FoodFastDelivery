@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import UserModel from '../models/UserModel';
+import UserModel from '../../models/UserModel.js';
 
 describe('UserModel', () => {
     let mongoServer;
