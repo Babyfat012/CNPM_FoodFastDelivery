@@ -1,6 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
-
+import dotenv from 'dotenv';
+dotenv.config();
 // Debug: Log environment variables
 console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
 console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
