@@ -26,7 +26,7 @@ const ResForgotPasswordDialog  = () => {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3000/auth/ResForgotPasswordDialog", {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/auth/ResForgotPasswordDialog`, {
         email,
       });
 

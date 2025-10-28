@@ -30,7 +30,7 @@ const ResLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3000/auth/ResLogin", {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/auth/ResLogin`, {
         email,
         password,
       });
