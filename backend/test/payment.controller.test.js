@@ -1,142 +1,129 @@
-// backend/test/payment.controller.test.js
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { jest } from '@jest/globals';
 
-// --- MOCK Razorpay (class) ---
-const createOrderMock = vi.fn();
+// --- prepare mocks (names start with "mock" so jest allows lazy access) ---
+const mockCreateOrder = jest.fn();
+const mockPaymentCreate = jest.fn();
+const mockPaymentFind = jest.fn();
 
-class FakeRazorpay {
-  constructor() {
-    this.orders = {
-      create: createOrderMock,
-    };
-  }
-}
-
-vi.mock("razorpay", () => ({
-  default: FakeRazorpay,
-}));
-
-// --- MOCK Payment model ---
-const paymentCreateMock = vi.fn();
-const paymentFindMock = vi.fn();
-
-vi.mock("../models/PaymentModel.js", () => ({
-  Payment: {
-    create: paymentCreateMock,
-    find: paymentFindMock,
+// mock ESM modules before importing the controller
+jest.unstable_mockModule('razorpay', () => ({
+  default: class {
+    constructor() {
+      this.orders = { create: mockCreateOrder };
+    }
   },
 }));
 
-// Import controllers SAU khi mock
-const { checkout, verify, userOrder, allOrders } = await import(
-  "../Controllers/payment.js"
-);
+jest.unstable_mockModule('../models/PaymentModel.js', () => ({
+  Payment: {
+    create: mockPaymentCreate,
+    find: mockPaymentFind,
+  },
+}));
+
+// dynamic import of the ESM controller after mocks are registered
+let checkout, verify, userOrder, allOrders;
+beforeAll(async () => {
+  const paymentModule = await import('../Controllers/payment.js');
+  checkout = paymentModule.checkout;
+  verify = paymentModule.verify;
+  userOrder = paymentModule.userOrder;
+  allOrders = paymentModule.allOrders;
+});
 
 // Helper res mock
 const mockRes = () => {
   const res = {};
-  res.status = vi.fn().mockReturnValue(res);
-  res.json = vi.fn().mockReturnValue(res);
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
   return res;
 };
 
 beforeEach(() => {
-  vi.clearAllMocks();
+  jest.clearAllMocks();
 });
 
-describe("payment controllers", () => {
-  it("checkout: tạo order Razorpay và trả về thông tin", async () => {
-    // Arrange
-    createOrderMock.mockResolvedValue({ id: "order_123" });
+describe('payment controllers', () => {
+  test('checkout: tạo order Razorpay và trả về thông tin', async () => {
+    mockCreateOrder.mockResolvedValue({ id: 'order_123' });
     const req = {
       body: {
         products: [
-          { price: 100, quantity: 2 }, // 200
-          { price: 50, quantity: 1 },  // 50  -> tổng 250 INR
+          { price: 100, quantity: 2 },
+          { price: 50, quantity: 1 },
         ],
-        ownerId: "u1",
-        orderItems: [{ sku: "A" }],
-        useraddress: { city: "HCM" },
+        ownerId: 'u1',
+        orderItems: [{ sku: 'A' }],
+        useraddress: { city: 'HCM' },
       },
     };
     const res = mockRes();
 
-    // Act
     await checkout(req, res);
 
-    // Assert
-    expect(createOrderMock).toHaveBeenCalledWith(
-      expect.objectContaining({ amount: 250 * 100, currency: "INR" })
+    expect(mockCreateOrder).toHaveBeenCalledWith(
+      expect.objectContaining({ amount: 250 * 100, currency: 'INR' })
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        orderId: "order_123",
-        amount: 250, // đổi lại từ paise -> INR
-        ownerId: "u1",
-        payStatus: "created",
+        orderId: 'order_123',
+        amount: 250,
+        ownerId: 'u1',
+        payStatus: 'created',
       })
     );
   });
 
-  it("verify: lưu thanh toán vào DB và trả success", async () => {
-    // Arrange
+  test('verify: lưu thanh toán vào DB và trả success', async () => {
     const req = {
       body: {
-        orderId: "order_123",
-        ownerId: "u1",
-        paymentId: "pay_999",
-        signature: "sig_xxx",
+        orderId: 'order_123',
+        ownerId: 'u1',
+        paymentId: 'pay_999',
+        signature: 'sig_xxx',
         amount: 250,
-        orderItems: [{ sku: "A" }],
-        useraddress: { city: "HCM" },
+        orderItems: [{ sku: 'A' }],
+        useraddress: { city: 'HCM' },
       },
     };
     const res = mockRes();
-    paymentCreateMock.mockResolvedValue({ _id: "db_1" });
+    mockPaymentCreate.mockResolvedValue({ _id: 'db_1' });
 
-    // Act
     await verify(req, res);
 
-    // Assert
-    expect(paymentCreateMock).toHaveBeenCalledWith(
+    expect(mockPaymentCreate).toHaveBeenCalledWith(
       expect.objectContaining({
-        orderId: "order_123",
-        payStatus: "paid",
+        orderId: 'order_123',
+        payStatus: 'paid',
       })
     );
-    expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ success: true })
-    );
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ success: true }));
   });
 
-  it("userOrder: trả danh sách đơn theo ownerId hiện tại", async () => {
-    // Arrange: Payment.find().sort() phải chainable
-    const sortMock = vi.fn().mockResolvedValue([{ _id: "o1" }]);
-    paymentFindMock.mockReturnValue({ sort: sortMock });
+  test('userOrder: trả danh sách đơn theo ownerId hiện tại', async () => {
+    const sortMock = jest.fn().mockResolvedValue([{ _id: 'o1' }]);
+    mockPaymentFind.mockReturnValue({ sort: sortMock });
 
-    const req = { rootUser: { _id: "u1" } };
+    const req = { rootUser: { _id: 'u1' } };
     const res = mockRes();
 
-    // Act
     await userOrder(req, res);
 
-    // Assert
-    expect(paymentFindMock).toHaveBeenCalledWith({ ownerId: "u1" });
+    expect(mockPaymentFind).toHaveBeenCalledWith({ ownerId: 'u1' });
     expect(sortMock).toHaveBeenCalledWith({ orderDate: -1 });
-    expect(res.json).toHaveBeenCalledWith([{ _id: "o1" }]);
+    expect(res.json).toHaveBeenCalledWith([{ _id: 'o1' }]);
   });
 
-  it("allOrders: trả toàn bộ đơn hàng, sort giảm dần", async () => {
-    const sortMock = vi.fn().mockResolvedValue([{ _id: "o2" }]);
-    paymentFindMock.mockReturnValue({ sort: sortMock });
+  test('allOrders: trả toàn bộ đơn hàng, sort giảm dần', async () => {
+    const sortMock = jest.fn().mockResolvedValue([{ _id: 'o2' }]);
+    mockPaymentFind.mockReturnValue({ sort: sortMock });
 
     const req = {};
     const res = mockRes();
-
     await allOrders(req, res);
 
-    expect(paymentFindMock).toHaveBeenCalledWith();
+    expect(mockPaymentFind).toHaveBeenCalledWith();
     expect(sortMock).toHaveBeenCalledWith({ orderDate: -1 });
-    expect(res.json).toHaveBeenCalledWith([{ _id: "o2" }]);
+    expect(res.json).toHaveBeenCalledWith([{ _id: 'o2' }]);
   });
 });
