@@ -28,7 +28,7 @@ const UsersCart = () => {
   // Create new order
   const createOrder = async (orderData) => {
     try {
-      const response = await axios.post("http://localhost:3000/api/order/newOrder", orderData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/order/newOrder`, orderData, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const UsersCart = () => {
   //Fetch users addresses
   const fetchUserAddresses = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/addresses/deliveryaddress/${userId}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/addresses/deliveryaddress/${userId}`);
       console.log(response.data);
       if (response.status === 200) {
         setUserAddress(response.data);
@@ -88,7 +88,7 @@ const UsersCart = () => {
   const handleDeliveryAddress = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/addresses/deliveryaddress", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/addresses/deliveryaddress`, {
         address,
         country,
         state,
@@ -116,7 +116,7 @@ const UsersCart = () => {
       const headers = { "Content-Type": "application/json" };
 
 
-      const response = await fetch("http://localhost:3000/api/payment/checkout", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/checkout`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
@@ -148,7 +148,7 @@ const UsersCart = () => {
           };
 
           // Make a request to your backend to verify the payment and update the order status
-          const api = await fetch("http://localhost:3000/api/payment/verify-payment", {
+          const api = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/verify-payment`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

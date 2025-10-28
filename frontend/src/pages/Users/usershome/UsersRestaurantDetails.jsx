@@ -15,7 +15,7 @@ const UsersRestaurantDetail = ({ restaurant, onClose }) => {
       try {
         setLoading(true);
 
-        const response = await axios.get(`http://localhost:3000/api/menu/ResMenu/${restaurant._id}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/menu/ResMenu/${restaurant._id}`, {
           withCredentials: true,
           headers: {
             Accept: 'application/json',
