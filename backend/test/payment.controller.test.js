@@ -62,7 +62,7 @@ describe('payment controllers', () => {
     await checkout(req, res);
 
     expect(mockCreateOrder).toHaveBeenCalledWith(
-      expect.objectContaining({ amount: 250 * 100, currency: 'INR' })
+      expect.objectContaining({ amount: 250 * 100, currency: 'USD' })
     );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
