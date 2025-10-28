@@ -27,7 +27,7 @@ const DelResetPassword = () => {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3000/auth/DelResetPassword/"+token, {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/auth/DelResetPassword/`+token, {
         password,
       });
 
