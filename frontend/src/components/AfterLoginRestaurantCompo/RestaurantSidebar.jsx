@@ -11,7 +11,7 @@ const RestaurantSidebar = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true
   const handleLogout = () => {
-    axios.get('http://localhost:3000/auth/logout') // Corrected URL
+    axios.get(`${import.meta.env.VITE_API_URL}/auth/logout`) // Corrected URL
       .then(res => {
         if (res.data.status) {
           localStorage.removeItem('restautantId');

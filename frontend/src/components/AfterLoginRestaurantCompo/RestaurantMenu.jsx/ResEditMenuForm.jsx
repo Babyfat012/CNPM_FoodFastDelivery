@@ -18,7 +18,7 @@ const ResEditMenuForm = ({ show, handleClose,editId }) => {
     useEffect(() => {
         
            if(loadData){
-            axios.get(`http://localhost:3000/api/menu/EditMenu/${editId}`,
+            axios.get(`${import.meta.env.VITE_API_URL}/api/menu/EditMenu/${editId}`,
                 {
                     withCredentials:true
                 }
@@ -53,7 +53,7 @@ const ResEditMenuForm = ({ show, handleClose,editId }) => {
         if (image) formData.append('image', image);
 
         try {
-            const response = await axios.patch(`http://localhost:3000/api/menu/ResMenu/${editId}`, formData, {
+            const response = await axios.patch(`${import.meta.env.VITE_API_URL}/api/menu/ResMenu/${editId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

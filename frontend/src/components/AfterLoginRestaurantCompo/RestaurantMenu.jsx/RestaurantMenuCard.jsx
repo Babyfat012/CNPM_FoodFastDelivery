@@ -25,7 +25,7 @@ const RestaurantMenuCard = (props) => {
         setInStock(!inStock); // Optimistically update UI
 
         try {
-            const response = await fetch(`http://localhost:3000/api/menu/toggleStock/${props.cardId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/menu/toggleStock/${props.cardId}`, {
                 credentials: 'include',
                 method: "PATCH",
                 headers: {

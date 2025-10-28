@@ -37,7 +37,7 @@ const Modal = ({ show, handleClose, addMenuItem }) => {
     });
 
     try {
-      const response = await Axios.post("http://localhost:3000/api/menu/ResMenu", formData, {
+      const response = await Axios.post(`${import.meta.env.VITE_API_URL}/api/menu/ResMenu`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         },
