@@ -37,7 +37,7 @@ const RestaurantMenu = ({ menuItems, loading, error, restaurantId }) => {
             <h3 className="text-xl font-bold mb-2 text-gray-800">{item.dishName}</h3>
             <p className="text-gray-700 mb-2">{item.description}</p>
             <div className="flex items-center justify-between">
-              <p className="text-lg font-semibold text-yellow-600">Rs {item.price.toFixed(2)}</p>
+              <p className="text-lg font-semibold text-yellow-600">$ {item.price.toFixed(2)}</p>
               {item.inStock ? (
                 <AddToCartButton item={item} restaurantId = {restaurantId}/>
                 

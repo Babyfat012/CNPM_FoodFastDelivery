@@ -57,7 +57,7 @@ const CurrentOrder = ({ currentOrders, getOrders }) => {
                                                     {item?.item?.dishName}
                                                 </span>
                                                 <p className='flex w-20 justify-end'>
-                                                    ₹ {item?.item?.price * item?.quantity}
+                                                    $ {item?.item?.price * item?.quantity}
                                                 </p>
                                             </div>
                                         </>
@@ -65,7 +65,7 @@ const CurrentOrder = ({ currentOrders, getOrders }) => {
                                 }
                                 <div className='flex justify-end bg-neutral-200 rounded-md mt-2 py-1 px-2 w-full'>
                                     <span className='font-semibold text-sm'>
-                                        Total bill : ₹ {order?.totalAmount}
+                                        Total bill : $ {order?.totalAmount}
                                     </span>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ const PastOrder = ({ pastOrders }) => {
                                                     {item?.item?.dishName}
                                                 </span>
                                                 <p className='flex w-20 justify-end'>
-                                                    ₹ {item?.item?.price * item?.quantity}
+                                                    $ {item?.item?.price * item?.quantity}
                                                 </p>
                                             </div>
                                         </>
@@ -134,7 +134,7 @@ const PastOrder = ({ pastOrders }) => {
                                 }
                                 <div className='flex justify-end bg-neutral-200 rounded-md mt-2 py-1 px-2 w-full'>
                                     <span className='font-semibold text-sm'>
-                                        Total bill : ₹ {order?.totalAmount}
+                                        Total bill : $ {order?.totalAmount}
                                     </span>
                                 </div>
                             </div>

@@ -132,7 +132,7 @@ const UsersCart = () => {
       var options = {
         key: "rzp_test_Jp05EcVr7cQRf3", // Enter the Key ID generated from the Dashboard
         amount: orderAmount * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        currency: "INR",
+        currency: "USD",
         name: "Foodiebuddy",
         description: "Food delivery website",
         order_id: orderId, // This is a sample Order ID. Pass the id obtained in the response of Step 1
@@ -323,7 +323,7 @@ const UsersCart = () => {
                   {country}, {state}, {city}, {address}
                 </p>
                 <h2 className="text-xl font-semibold mb-4">Cart Totals</h2>
-                <p className="mb-4">Total: Rs {cartTotal.toFixed(2)}</p>
+                <p className="mb-4">Total: $ {cartTotal.toFixed(2)}</p>
                 <button
                   className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition duration-300"
                   onClick={handlePayment}

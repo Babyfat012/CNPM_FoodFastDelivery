@@ -85,7 +85,7 @@ const [orders, setOrders] = useState([]);
                       <p key={item?._id} className="text-sm">{item?.item?.dishName} x {item?.quantity}</p>
                     ))}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹ {order?.totalAmount.toFixed(2)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$ {order?.totalAmount.toFixed(2)}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     <StatusBadge status={order?.orderStatus} />
                   </td>
