@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
 // Update a drone
 router.put("/:id", async (req, res) => {
     try {
-        const drone = await DroneModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const drone = await DroneModel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!drone) return res.status(404).json({ error: "Drone not found" });
         res.json(drone);
     } catch (err) {
@@ -64,7 +64,7 @@ router.patch("/:id/status", async (req, res) => {
         const drone = await DroneModel.findByIdAndUpdate(
             req.params.id,
             { status },
-            { new: true }
+            { new: true, runValidators: true }
         );
         if (!drone) return res.status(404).json({ error: "Drone not found" });
         res.json(drone);
