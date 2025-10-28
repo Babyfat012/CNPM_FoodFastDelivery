@@ -17,7 +17,7 @@ const Details = ({ restaurantId }) => {
 
     const callResDetails = async () => {
         try {
-            const res = await fetch('http://localhost:3000/auth/RestaurantLayout/ResDetails', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/RestaurantLayout/ResDetails`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -57,7 +57,7 @@ const Details = ({ restaurantId }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3000/auth/updateDetails/${restaurantId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/updateDetails/${restaurantId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

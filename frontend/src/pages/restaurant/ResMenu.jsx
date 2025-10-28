@@ -23,7 +23,7 @@ const Menu = () => {
 
   const toggleStockStatus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/menu/toggleStock/${id}`);
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/menu/toggleStock/${id}`);
       if (response.status === 200) {
         const updatedMenuItems = menuItems.map(item => 
           item._id === id ? { ...item, inStock: !item.inStock } : item
@@ -47,7 +47,7 @@ const Menu = () => {
   }, [show]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/menu/ResMenu')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/menu/ResMenu`)
       .then(result => setMenuItems(result.data))
       .catch(err => console.log(err));
   }, []);
