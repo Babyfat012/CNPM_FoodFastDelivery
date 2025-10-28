@@ -19,7 +19,7 @@ export const checkout = async (req, res) => {
      console.log(amount)
     var options = {
       amount: amount, // amount in the smallest currency unit
-      currency: "VND",
+      currency: "USD",
       receipt: `receipt_${Date.now()}`,
     };
 
