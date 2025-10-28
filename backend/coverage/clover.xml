@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1761531948027" clover="3.2.0">
-  <project timestamp="1761531948027" name="All files">
-    <metrics statements="204" coveredstatements="69" conditionals="42" coveredconditionals="13" methods="21" coveredmethods="5" elements="267" coveredelements="87" complexity="0" loc="204" ncloc="204" packages="2" files="4" classes="4"/>
+<coverage generated="1761628789404" clover="3.2.0">
+  <project timestamp="1761628789404" name="All files">
+    <metrics statements="235" coveredstatements="94" conditionals="42" coveredconditionals="13" methods="26" coveredmethods="10" elements="303" coveredelements="117" complexity="0" loc="235" ncloc="235" packages="3" files="5" classes="5"/>
+    <package name="Controllers">
+      <metrics statements="31" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+      <file name="payment.js" path="D:\DATA VINH\Desktop\2025 - 2026\hoc ki 1\CNPM\CNPM_FoodFastDelivery\backend\Controllers\payment.js">
+        <metrics statements="31" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="models">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="ResModel.js" path="D:\DATA VINH\Desktop\2025 - 2026\hoc ki 1\CNPM\CNPM_FoodFastDelivery\backend\models\ResModel.js">
@@ -83,12 +120,12 @@
         <line num="144" count="0" type="stmt"/>
         <line num="147" count="3" type="stmt"/>
         <line num="148" count="3" type="stmt"/>
-        <line num="150" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="151" count="1" type="stmt"/>
-        <line num="154" count="2" type="stmt"/>
-        <line num="155" count="2" type="stmt"/>
-        <line num="156" count="2" type="stmt"/>
-        <line num="157" count="2" type="stmt"/>
+        <line num="150" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="154" count="3" type="stmt"/>
+        <line num="155" count="3" type="stmt"/>
+        <line num="156" count="3" type="stmt"/>
+        <line num="157" count="3" type="stmt"/>
         <line num="159" count="0" type="stmt"/>
         <line num="160" count="0" type="stmt"/>
         <line num="167" count="1" type="stmt"/>
@@ -115,14 +152,14 @@
         <line num="208" count="0" type="stmt"/>
         <line num="209" count="0" type="stmt"/>
         <line num="214" count="1" type="stmt"/>
-        <line num="215" count="2" type="stmt"/>
-        <line num="216" count="2" type="stmt"/>
-        <line num="217" count="2" type="stmt"/>
-        <line num="218" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="215" count="3" type="stmt"/>
+        <line num="216" count="3" type="stmt"/>
+        <line num="217" count="3" type="stmt"/>
+        <line num="218" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="219" count="0" type="stmt"/>
-        <line num="222" count="2" type="stmt"/>
-        <line num="224" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="225" count="0" type="stmt"/>
+        <line num="222" count="3" type="stmt"/>
+        <line num="224" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="225" count="1" type="stmt"/>
         <line num="228" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="229" count="2" type="stmt"/>
         <line num="231" count="2" type="stmt"/>
